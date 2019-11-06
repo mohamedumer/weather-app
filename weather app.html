@@ -1,0 +1,77 @@
+<html>
+<head>
+  <meta charset="utf-8" />
+ 
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <link  rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+ 
+ <style>
+ body{
+   background-color: black;
+ }
+ </style>
+</head>
+<body>
+ 
+  <div class="container text-warning text-center">
+    <h1 style="font-family: sans-serif">Weather App</h1>
+</div>
+<div class="container col-8"style="border: 2px solid grey;border-radius:5px;background-color: lightgrey ">
+   <div class="row">
+    <div class="col-4" id="city"></div>
+    <div class="col-4" id="country"></div>
+   </div>
+   <div class="row">
+    <div class="col-4" id="temp" style=" font-weight: bold;font-size: 30px;"></div>
+   </div>
+   
+   <div class="row">
+    <div class="col-3"id="wind_speed"></div>
+    <div class="col-3" id="wind_dir"></div>
+   </div>
+   <div class="row">
+     
+    <div class="col-3" id="humidity"></div>
+    <div  class="col-3" id="weather"></div>
+    <div  class="col-3" id="coord"></div>
+   </div>
+</div>
+<div class="container text-center pt-5"><button class="btn btn-warning" onclick="location.reload()">Find another</button></div>
+    <script>
+      var arr;
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+    
+     var y=this.responseText;
+     var array=JSON.parse(y);
+     
+     
+     cloud=JSON.stringify(array.weather);
+     
+     var clouds=JSON.parse(cloud);
+     var deg=array.main.temp-273.15;
+     var degg=deg.toFixed(2);
+     document.getElementById("weather").innerHTML="weather: <br>"+clouds["0"]["main"];
+     document.getElementById("temp").innerHTML="temperature: <br>"+degg+" &#176;C";
+     document.getElementById("humidity").innerHTML="humidity:<br> "+array.main.humidity+"%";
+     document.getElementById("wind_speed").innerHTML="wind speed:<br> "+array.wind.speed+"km/h";
+     document.getElementById("wind_dir").innerHTML="wind direction: <br>"+array.wind.deg;
+     document.getElementById("country").innerHTML="country: <br>"+getCountryName(isoCountries[array.sys.country]);
+     document.getElementById("city").innerHTML="city name: <br>"+array.name;
+     document.getElementById("coord").innerHTML="co-ordinates: <br> longitude: "+array.coord.lon+" <br>latitude: "+array.coord.lat;
+
+    }
+  };
+  
+  var x=prompt("Weather Finder  --- Enter the city name: ");
+  xhttp.open("GET", "https://api.openweathermap.org/data/2.5/weather?q="+x+"&appid=c2c3a8c328b8822bda7f0660aadebda1", true);
+  xhttp.send();
+  </script>
+  <script src="./code.js"></script>
+  </body>
+  </html>
