@@ -22,11 +22,14 @@
   </head>
   <body>
     <div class="container text-warning text-center pt-4">
-      <h1 style="font-family: sans-serif;text-shadow: black 2px 2px 2px; ">Weather App</h1>
+      <h1 style="font-family: sans-serif;text-shadow: black 2px 2px 2px; ">
+        Weather App
+      </h1>
     </div>
     <div
       class="container pt-3 col-10"
-      style="border: 2px solid grey;border-radius:5px;background-color: lightgrey ;width :500px;box-shadow: black 2px 2px 5px; ">
+      style="border: 2px solid grey;border-radius:5px;background-color: lightgrey ;width :500px;box-shadow: black 2px 2px 5px; "
+    >
       <div class="row">
         <div class="pl-3 pr-5" id="city"></div>
         <div class="pl-5" id="country"></div>
@@ -47,6 +50,7 @@
         <div class="" id="coord"></div>
         <div class="" id="wind_speed"></div>
       </div>
+      <div calss="row"><div id="time"></div></div>
     </div>
     <div class="container text-center pt-5">
       <button class="btn btn-warning" onclick="location.reload()">
@@ -91,6 +95,11 @@
             array.coord.lon +
             " <b>latitude: " +
             array.coord.lat;
+          document.getElementById("time").innerHTML =
+            "<b>" +
+            new Date().toLocaleTimeString() +
+            " &nbsp; &nbsp; &nbsp;   " +
+            new Date().toLocaleDateString();
           var flag = 0;
           var list = [
             "Clouds",
