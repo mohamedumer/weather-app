@@ -15,17 +15,18 @@
 
     <style>
       body {
-        background-color: black;
+        background-repeat: no-repeat;
+        background-size: cover;
       }
     </style>
   </head>
   <body>
     <div class="container text-warning text-center pt-4">
-      <h1 style="font-family: sans-serif">Weather App</h1>
+      <h1 style="font-family: sans-serif;text-shadow: black 2px 2px 2px; ">Weather App</h1>
     </div>
     <div
       class="container pt-3 col-10"
-      style="border: 2px solid grey;border-radius:5px;background-color: lightgrey ;width :500px" >
+      style="border: 2px solid grey;border-radius:5px;background-color: lightgrey ;width :500px;box-shadow: black 2px 2px 5px; ">
       <div class="row">
         <div class="pl-3 pr-5" id="city"></div>
         <div class="pl-5" id="country"></div>
@@ -90,6 +91,37 @@
             array.coord.lon +
             " <b>latitude: " +
             array.coord.lat;
+          var flag = 0;
+          var list = [
+            "Clouds",
+            "Haze",
+            "Clear",
+            "Rain",
+            "Thunderstorm",
+            "Snow",
+            "Mist",
+            "Fog"
+          ];
+          var img_lists = [
+            "clouds",
+            "haze",
+            "clear",
+            "rain",
+            "thunder",
+            "snow",
+            "mist",
+            "fog"
+          ];
+          for (i = 0; i < list.length; i++) {
+            if (clouds["0"]["main"] == list[i]) {
+              document.body.style.backgroundImage =
+                "url('./wet/" + img_lists[i] + ".jpg')";
+              flag = 1;
+            }
+          }
+          if (flag == 0) {
+            document.body.style.backgroundImage = "url('./wet/sunny.jpg')";
+          }
         }
       };
 
