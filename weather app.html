@@ -78,7 +78,7 @@
           var deg = array.main.temp - 273.15;
           var degg = deg.toFixed(2);
           document.getElementById("weather").innerHTML =
-            "Weather:<b>" + clouds["0"]["main"];
+            "Weather: <b>" + clouds["0"]["main"];
           document.getElementById("temp").innerHTML = degg + " &#176;C";
           document.getElementById("humidity").innerHTML =
             "Humidity: <b>" + array.main.humidity + "%";
@@ -109,7 +109,8 @@
             "Thunderstorm",
             "Snow",
             "Mist",
-            "Fog"
+            "Fog",
+            "Smoke"
           ];
           var img_lists = [
             "clouds",
@@ -119,6 +120,7 @@
             "thunder",
             "snow",
             "mist",
+            "fog",
             "fog"
           ];
           for (i = 0; i < list.length; i++) {
